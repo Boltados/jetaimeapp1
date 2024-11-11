@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="{{ categoryName }}" class="action-bar">
+        <NavigationButton visibility="visible" />
+    </ActionBar>
+    
+    <GridLayout rows="auto, *">
+        <SearchBar hint="Search products..." class="m-2" />
+        
+        <GridLayout row="1">
+            <ListView items="{{ products }}" class="list-group" itemTap="{{ onProductTap }}">
+                <ListView.itemTemplate>
+                    <GridLayout rows="auto" columns="*, *" class="product-card m-2 bg-white rounded-lg shadow">
+                        <Image src="{{ imageUrl }}" width="150" height="150" stretch="aspectFill" class="rounded-t-lg" />
+                        <StackLayout col="1" class="p-3">
+                            <Label text="{{ name }}" class="font-bold text-lg" textWrap="true" />
+                            <Label text="{{ description }}" class="text-sm text-gray-600" textWrap="true" />
+                            <Label text="{{ 'SAR ' + price }}" class="text-lg text-green-600 font-semibold mt-2" />
+                            <Button text="{{ 'app.product.addToCart' | L }}" tap="{{ $parent.onAddToCart }}" 
+                                    class="bg-black text-white p-2 mt-2 rounded" />
+                        </StackLayout>
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </GridLayout>
+    </GridLayout>
+</Page>

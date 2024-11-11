@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="{{ 'app.cart.title' | L }}" class="action-bar" />
+    
+    <GridLayout rows="*, auto">
+        <ListView items="{{ items }}" row="0" class="list-group" visibility="{{ items.length > 0 ? 'visible' : 'collapsed' }}">
+            <ListView.itemTemplate>
+                <GridLayout columns="auto, *, auto" rows="auto" class="list-group-item p-2">
+                    <Image src="{{ image }}" width="60" height="60" class="rounded-lg" stretch="aspectFill" col="0" />
+                    
+                    <StackLayout col="1" class="ml-2">
+                        <Label text="{{ isArabic ? nameAr : name }}" class="font-semibold" />
+                        <Label text="{{ price + ' SAR' }}" class="text-gray-600" />
+                        <GridLayout columns="auto, auto, auto" class="mt-1">
+                            <Button text="-" tap="{{ $parents['ListView'].decreaseQuantity }}" 
+                                    class="btn-sm" col="0" />
+                            <Label text="{{ quantity }}" class="text-center w-10" col="1" />
+                            <Button text="+" tap="{{ $parents['ListView'].increaseQuantity }}"
+                                    class="btn-sm" col="2" />
+                        </GridLayout>
+                    </StackLayout>
+                    
+                    <Button text="✕" tap="{{ $parents['ListView'].removeItem }}" 
+                            class="btn-sm btn-danger" col="2" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+
+        <StackLayout row="0" class="p-4 text-center" 
+                     visibility="{{ items.length === 0 ? 'visible' : 'collapsed' }}">
+            <Label text="{{ 'app.cart.empty' | L }}" class="text-lg text-gray-500" />
+            <Button text="{{ 'app.cart.shopNow' | L }}" tap="onShopNow" 
+                    class="btn-primary mt-4" />
+        </StackLayout>
+
+        <StackLayout row="1" class="p-4 bg-white border-t" 
+                     visibility="{{ items.length > 0 ? 'visible' : 'collapsed' }}">
+            <GridLayout columns="*, auto" class="mb-2">
+                <Label text="{{ 'app.cart.total' | L }}" class="text-lg" col="0" />
+                <Label text="{{ total + ' SAR' }}" class="text-lg font-bold" col="1" />
+            </GridLayout>
+            <Button text="{{ 'app.cart.checkout' | L }}" tap="onCheckout" 
+                    class="btn-primary" />
+        </StackLayout>
+    </GridLayout>
+</Page>

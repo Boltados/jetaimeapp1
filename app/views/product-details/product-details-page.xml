@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="{{ product.name }}" class="action-bar">
+        <NavigationButton visibility="visible" />
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Image src="{{ product.imageUrl }}" class="w-full h-64 rounded-lg" stretch="aspectFill" />
+            
+            <StackLayout class="mt-4">
+                <Label text="{{ product.name }}" class="text-2xl font-bold" textWrap="true" />
+                <Label text="{{ 'SAR ' + product.price }}" class="text-xl text-green-600 font-semibold mt-2" />
+                <Label text="{{ product.description }}" class="text-gray-600 mt-2" textWrap="true" />
+                
+                <GridLayout rows="auto" columns="auto, *" class="mt-4">
+                    <Label text="Quantity:" class="text-lg" verticalAlignment="center" />
+                    <StackLayout col="1" orientation="horizontal" horizontalAlignment="right">
+                        <Button text="-" tap="{{ decreaseQuantity }}" class="w-12 h-12 bg-gray-200 rounded" />
+                        <Label text="{{ quantity }}" class="text-lg mx-4" verticalAlignment="center" />
+                        <Button text="+" tap="{{ increaseQuantity }}" class="w-12 h-12 bg-gray-200 rounded" />
+                    </StackLayout>
+                </GridLayout>
+                
+                <Button text="{{ 'app.product.addToCart' | L }}" tap="{{ addToCart }}" 
+                        class="bg-black text-white p-4 rounded-lg mt-4" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

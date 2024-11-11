@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="page">
+    <ActionBar title="{{ 'app.name' | L }}" class="action-bar" />
+    
+    <TabView androidTabsPosition="bottom">
+        <TabViewItem title="{{ 'app.menu.home' | L }}">
+            <GridLayout>
+                <ScrollView>
+                    <StackLayout class="p-4">
+                        <Image src="~/images/banner.jpg" class="w-full h-40 rounded-lg" stretch="aspectFill" />
+                        <Label text="Featured Products" class="text-xl font-bold mt-4 mb-2" />
+                        <GridLayout columns="*, *" rows="auto, auto" class="featured-products">
+                            <Repeater items="{{ featuredProducts }}" colSpan="2">
+                                <Repeater.itemTemplate>
+                                    <GridLayout col="{{ $index % 2 }}" row="{{ Math.floor($index / 2) }}">
+                                        <ns:ProductCard product="{{ $value }}" class="m-1" />
+                                    </GridLayout>
+                                </Repeater.itemTemplate>
+                            </Repeater>
+                        </GridLayout>
+                    </StackLayout>
+                </ScrollView>
+            </GridLayout>
+        </TabViewItem>
+        
+        <TabViewItem title="{{ 'app.menu.categories' | L }}">
+            <Frame defaultPage="views/categories/categories-page" />
+        </TabViewItem>
+        
+        <TabViewItem title="{{ 'app.menu.cart' | L }}">
+            <Frame defaultPage="views/cart/cart-page" />
+        </TabViewItem>
+        
+        <TabViewItem title="{{ 'app.menu.account' | L }}">
+            <Frame defaultPage="views/account/account-page" />
+        </TabViewItem>
+    </TabView>
+</Page>

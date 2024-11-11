@@ -1,0 +1,16 @@
+{
+  "app": {
+    "name": "Je T'aime Shopping",
+    "menu": {
+      "home": "Home",
+      "categories": "Categories",
+      "cart": "Cart",
+      "account": "Account"
+    },
+    "product": {
+      "addToCart": "Add to Cart",
+      "quantity": "Quantity",
+      "price": "Price"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Je T'aime Shopping" class="action-bar" />
+    
+    <TabView androidTabsPosition="bottom">
+        <TabViewItem title="Home">
+            <TabViewItem.iconSource>
+                <Label text="&#xf015;" class="tab-icon" />
+            </TabViewItem.iconSource>
+            <GridLayout>
+                <ScrollView>
+                    <StackLayout class="p-4">
+                        <SearchBar hint="Search products..." class="mb-4" />
+                        
+                        <ListView items="{{ products }}" class="list-group">
+                            <ListView.itemTemplate>
+                                <GridLayout rows="auto" columns="*, *" class="product-card p-2">
+                                    <Image src="{{ image }}" width="120" height="120" stretch="aspectFill" />
+                                    <StackLayout col="1" class="p-2">
+                                        <Label text="{{ name }}" class="font-bold text-lg" />
+                                        <Label text="{{ '$ ' + price }}" class="text-green-600" />
+                                        <Button text="Add to Cart" tap="{{ $parent.onAddToCart }}" class="bg-black text-white p-2 mt-2" />
+                                    </StackLayout>
+                                </GridLayout>
+                            </ListView.itemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+            </GridLayout>
+        </TabViewItem>
+
+        <TabViewItem title="Categories">
+            <TabViewItem.iconSource>
+                <Label text="&#xf00a;" class="tab-icon" />
+            </TabViewItem.iconSource>
+            <GridLayout>
+                <ListView items="{{ categories }}" class="list-group">
+                    <ListView.itemTemplate>
+                        <StackLayout class="p-4 border-b border-gray-200">
+                            <Label text="{{ name }}" class="text-lg" />
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </GridLayout>
+        </TabViewItem>
+
+        <TabViewItem title="Cart">
+            <TabViewItem.iconSource>
+                <Label text="&#xf07a;" class="tab-icon" />
+            </TabViewItem.iconSource>
+            <GridLayout>
+                <StackLayout class="p-4">
+                    <ListView items="{{ cartItems }}" class="list-group">
+                        <ListView.itemTemplate>
+                            <GridLayout columns="auto, *, auto" class="p-2 border-b border-gray-200">
+                                <Image src="{{ image }}" width="60" height="60" stretch="aspectFill" />
+                                <StackLayout col="1" class="ml-2">
+                                    <Label text="{{ name }}" class="font-bold" />
+                                    <Label text="{{ '$ ' + price }}" class="text-green-600" />
+                                </StackLayout>
+                                <Button text="Remove" tap="{{ $parent.onRemoveFromCart }}" class="bg-red-500 text-white p-2" col="2" />
+                            </GridLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+                    <Label text="{{ 'Total: $ ' + cartTotal }}" class="text-xl font-bold p-4" />
+                    <Button text="Checkout" tap="{{ onCheckout }}" class="bg-green-600 text-white p-4" />
+                </StackLayout>
+            </GridLayout>
+        </TabViewItem>
+    </TabView>
+</Page>

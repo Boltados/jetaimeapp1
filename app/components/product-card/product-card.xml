@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<GridLayout rows="*, auto, auto" class="product-card card" tap="onProductTap">
+    <Image row="0" src="{{ images[0] }}" class="w-full h-40 rounded-t-lg" stretch="aspectFill" />
+    <StackLayout row="1" class="p-2">
+        <Label text="{{ isArabic ? nameAr : name }}" class="font-bold text-lg" />
+        <Label text="{{ price + ' SAR' }}" class="text-gray-600" />
+    </StackLayout>
+    <Button row="2" text="{{ 'app.product.addToCart' | L }}" tap="onAddToCart" class="btn-primary m-2" />
+</GridLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="{{ 'app.menu.categories' | L }}" class="action-bar" />
+    
+    <GridLayout>
+        <ListView items="{{ categories }}" class="list-group" itemTap="{{ onCategoryTap }}">
+            <ListView.itemTemplate>
+                <GridLayout columns="auto, *" class="p-4 border-b border-gray-200">
+                    <Image src="{{ imageUrl }}" width="60" height="60" stretch="aspectFill" class="rounded-lg" />
+                    <StackLayout col="1" class="ml-4">
+                        <Label text="{{ name }}" class="text-lg font-semibold" />
+                        <Label text="{{ itemCount + ' items' }}" class="text-sm text-gray-500" />
+                    </StackLayout>
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

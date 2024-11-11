@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="{{ isArabic ? product.nameAr : product.name }}" class="action-bar">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Image src="{{ product.images[0] }}" class="w-full h-64 rounded-lg" stretch="aspectFill" />
+            
+            <Label text="{{ isArabic ? product.nameAr : product.name }}" class="text-2xl font-bold mt-4" />
+            <Label text="{{ product.price + ' SAR' }}" class="text-xl text-gray-600 mt-2" />
+            
+            <Label text="{{ isArabic ? product.descriptionAr : product.description }}" 
+                   class="text-gray-700 mt-4" textWrap="true" />
+            
+            <Button text="{{ 'app.product.addToCart' | L }}" tap="onAddToCart" 
+                    class="btn-primary mt-4" isEnabled="{{ product.inStock }}" />
+        </StackLayout>
+    </ScrollView>
+</Page>
